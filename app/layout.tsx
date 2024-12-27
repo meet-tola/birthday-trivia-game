@@ -11,8 +11,8 @@ const mouseMemoirs = Mouse_Memoirs({
 });
 
 export const metadata: Metadata = {
-  title: "CodeQuiz",
-  description: "Weekly quiz question for developers",
+  title: "Tola's Birthday Quiz",
+  description: "How well do you know tola?",
 };
 
 export default function RootLayout({
@@ -26,9 +26,7 @@ export default function RootLayout({
         <body
           className={`${mouseMemoirs.className} min-h-[100dvh] laptop:bg-tablet-bg mobile:bg-mobile-bg bg-desktop-bg bg-cover bg-bottom font-normal`}
         >
-          {/* <Navbar /> */}
           {children}
-          {/* <Footer /> */}
         </body>
       </html>
     </ClerkProvider>
