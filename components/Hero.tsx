@@ -12,7 +12,7 @@ const Hero = () => {
     <section className="mobile:px-8 flex min-h-[100dvh] flex-col items-center justify-center">
       <img src="logo.svg" alt="hangman logo" className="z-[3] -mb-24" />
       <div className="to-[rgba(0, 20, 121, 0.83)] mobile:px-28 mobile:w-full flex flex-col items-center justify-center gap-24 rounded-[7.2rem] bg-gradient-to-b from-[#344aba] px-52 py-44 shadow-menu-sh">
-        <Link href={user ? "/game" : "/sign-up"}>
+        <Link href={user ? "/game" : "/sign-in"}>
           <Button type="big">
             <Image
               src="./icon-play.svg"
@@ -39,7 +39,7 @@ const Hero = () => {
               Check Leadboard
             </motion.button>
           </Link>
-          <Link href={"/wishlist"}>
+          <Link href={"/wishlists"}>
             <motion.button
               initial={{ scale: 1 }}
               whileHover={{ scale: 1.1 }}

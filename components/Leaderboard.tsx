@@ -22,7 +22,7 @@ type LeaderboardProps = {
 const Leaderboard: React.FC<LeaderboardProps> = ({ users }) => {
   return (
     <div className="min-h-screen bg-[#1C1C5D] text-white p-8">
-      <div className="max-w-[1500px] mx-auto w-[90%] py-10">
+      <div className="max-w-[500px] mx-auto w-[90%] py-10">
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
