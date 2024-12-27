@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import StatCard from "./StatCard";
+import Link from "next/link";
 
 interface QuizProps {
   questions: {
@@ -160,7 +161,9 @@ const Quiz = ({ questions, userId }: QuizProps) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h3 className="mb-10 text-[3.2rem] font-bold text-white">{question}</h3>
+              <h3 className="mb-10 text-[3.2rem] font-bold text-white">
+                {question}
+              </h3>
               <ul className="space-y-5">
                 {answers.map((answer: string, idx: number) => (
                   <motion.button
@@ -198,7 +201,7 @@ const Quiz = ({ questions, userId }: QuizProps) => {
                 className="mobile:px-8 rounded-[4rem] mt-8 bg-[#2463FF] from-[rgba(255,255,255,0.25)] to-[rgba(255,255,255,0.25)] px-[6.4rem] py-[1.2rem] text-[3.2rem] uppercase leading-[120%] tracking-[0.16rem] text-white shadow-purple-sh hover:bg-gradient-to-r"
               >
                 {activeQuestion === questions.length - 1
-                  ? "Finish"
+                  ? "Finish 🎉"
                   : "Next Question →"}
               </motion.button>
             </motion.div>
@@ -211,25 +214,37 @@ const Quiz = ({ questions, userId }: QuizProps) => {
             className="text-center"
           >
             <h3 className="text-[4.8rem] uppercase mb-10 font-bold text-white leading-[120%] tracking-[0.24rem] mobile:tracking-[0.12rem]">
-              Results 📈
+              🎂 Results 🎉
             </h3>
             <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10">
-              <StatCard title="Percentage" value={`${(results.score / 50) * 100}%`} />
-              <StatCard title="Total Questions" value={questions.length} />
-              <StatCard title="Total Score" value={results.score} />
-              <StatCard title="Correct Answers" value={results.correctAnswers} />
-              <StatCard title="Wrong Answers" value={results.wrongAnswers} />
+              <StatCard
+                title="Correct Answers"
+                value={results.correctAnswers}
+              />{" "}
+              {/* <StatCard title="Total Score" value={results.score} /> */}
+              <StatCard
+                title="Correct Answers"
+                value={results.correctAnswers}
+              />
+              <StatCard
+                title="Score"
+                value={`${(
+                  (results.correctAnswers / questions.length) *
+                  100
+                ).toFixed(2)}%`}
+              />{" "}
             </div>
-            <motion.button
-              onClick={() => window.location.reload()}
-              initial={{ y: 0 }}
-              whileHover={{ y: -10 }}
-              whileTap={{ y: 0 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              className="mt-10 mobile:text-[2.4rem] mobile:tracking-[0.12rem] mobile:py-8 w-full rounded-[4rem] bg-[#2463FF] from-[rgba(255,255,255,0.25)] to-[rgba(255,255,255,0.25)] px-8 py-[5rem] text-[4.8rem] uppercase leading-[120%] tracking-[0.24rem] text-white shadow-purple-sh hover:bg-gradient-to-t"
-            >
-              Restart Quiz
-            </motion.button>
+            <Link href="/leaderboards">
+              <motion.button
+                initial={{ y: 0 }}
+                whileHover={{ y: -10 }}
+                whileTap={{ y: 0 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                className="mt-10 mobile:text-[2.4rem] mobile:tracking-[0.12rem] mobile:py-8 w-full rounded-[4rem] bg-[#2463FF] from-[rgba(255,255,255,0.25)] to-[rgba(255,255,255,0.25)] px-8 py-[5rem] text-[4.8rem] uppercase leading-[120%] tracking-[0.24rem] text-white shadow-purple-sh hover:bg-gradient-to-t"
+              >
+                Check Leaderboard
+              </motion.button>
+            </Link>
           </motion.div>
         )}
       </div>
