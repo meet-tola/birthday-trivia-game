@@ -4,9 +4,16 @@ import Link from "next/link";
 import Button from "./ui/Button";
 import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
+import React from "react";
 
 const Hero = () => {
   const { user } = useUser();
+  React.useEffect(() => {
+    document.documentElement.style.fontSize = "62.5%";
+    return () => {
+      document.documentElement.style.fontSize = "";
+    };
+  }, []);
 
   return (
     <section className="mobile:px-8 flex min-h-[100dvh] flex-col items-center justify-center">

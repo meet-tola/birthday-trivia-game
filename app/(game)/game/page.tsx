@@ -1,6 +1,6 @@
+import { fetchUsers } from "@/app/(auth)/actions/fetchUsers";
 import Quiz from "@/components/Quiz";
 import { client } from "@/sanity/lib/client";
-import { fetchUsers } from "../(auth)/actions/fetchUsers";
 
 export const dynamic = "force-dynamic";
 
