@@ -166,45 +166,46 @@ const Quiz = ({ questions, userId }: QuizProps) => {
                 {question}
               </h3>
               <ul className="space-y-5">
-  {answers.map((answer: string, idx: number) => {
-    // Determine the styles and icons based on the selected answer and correctness
-    const isSelected = selectedAnswerIndex === idx;
-    const isCorrect = checked && answer === correctAnswer;
-    const isIncorrect = checked && isSelected && answer !== correctAnswer;
+                {answers.map((answer: string, idx: number) => {
+                  // Determine the styles and icons based on the selected answer and correctness
+                  const isSelected = selectedAnswerIndex === idx;
+                  const isCorrect = checked && answer === correctAnswer;
+                  const isIncorrect =
+                    checked && isSelected && answer !== correctAnswer;
 
-    return (
-      <motion.button
-        key={idx}
-        initial={{ y: 0 }}
-        whileHover={{ y: -10 }}
-        whileTap={{ y: 0 }}
-        transition={{
-          type: "spring",
-          stiffness: 400,
-          damping: 10,
-        }}
-        onClick={() => onAnswerSelected(answer, idx)}
-        disabled={checked} // Disable buttons after an answer is selected
-        className={`w-full mobile:px-8 rounded-[4rem] px-[6.4rem] py-[1.2rem] text-[3.2rem] uppercase leading-[120%] tracking-[0.16rem] text-white shadow-purple-sh 
+                  return (
+                    <motion.button
+                      key={idx}
+                      initial={{ y: 0 }}
+                      whileHover={{ y: -10 }}
+                      whileTap={{ y: 0 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 10,
+                      }}
+                      onClick={() => onAnswerSelected(answer, idx)}
+                      disabled={checked} // Disable buttons after an answer is selected
+                      className={`w-full mobile:px-8 rounded-[4rem] px-[6.4rem] py-[1.2rem] text-[3.2rem] uppercase leading-[120%] tracking-[0.16rem] text-white shadow-purple-sh 
           ${
             isCorrect
-              ? "bg-green-500" 
+              ? "bg-green-500"
               : isIncorrect
-              ? "bg-red-500" 
-              : selectedAnswerIndex === idx
-              ? "bg-[#0f1f47]" 
-              : "bg-[#2463FF]" 
+                ? "bg-red-500"
+                : selectedAnswerIndex === idx
+                  ? "bg-[#0f1f47]"
+                  : "bg-[#2463FF]"
           }`}
-      >
-        <span className="flex items-center justify-between">
-          {answer}
-          {isCorrect && <Check className="ml-4" />}
-          {isIncorrect && <X className="ml-4" />}
-        </span>
-      </motion.button>
-    );
-  })}
-</ul>
+                    >
+                      <span className="flex items-center justify-between">
+                        {answer}
+                        {isCorrect && <Check className="ml-4" />}
+                        {isIncorrect && <X className="ml-4" />}
+                      </span>
+                    </motion.button>
+                  );
+                })}
+              </ul>
 
               <motion.button
                 initial={{ scale: 1 }}
@@ -240,8 +241,7 @@ const Quiz = ({ questions, userId }: QuizProps) => {
                 title="Correct Answers"
                 value={results.correctAnswers}
               />
-              <StatCard title="Total Score" value={results.score} />
-
+              <StatCard title="Total questions" value={questions.length} />
               <StatCard
                 title="Score"
                 value={`${(

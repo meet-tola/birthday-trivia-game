@@ -9,9 +9,18 @@ export const fetchUsers = async () => {
       throw new Error("No Clerk user found. User must be signed in.");
     }
 
-    let mongoUser = await prisma.user.findUnique({
+    const email = clerkUser?.emailAddresses?.[0]?.emailAddress;
+    if (!email) {
+      throw new Error("Email address is missing for the Clerk user.");
+    }
+
+    // Check if the user already exists by `email` or `clerkUserId`
+    let mongoUser = await prisma.user.findFirst({
       where: {
-        clerkUserId: clerkUser.id,
+        OR: [
+          { clerkUserId: clerkUser.id },
+          { email },
+        ],
       },
     });
 
@@ -19,11 +28,6 @@ export const fetchUsers = async () => {
       let username = clerkUser?.username || `${clerkUser?.firstName || ""} ${clerkUser?.lastName || ""}`.trim();
       if (!username) {
         username = "Unknown User";
-      }
-
-      const email = clerkUser?.emailAddresses?.[0]?.emailAddress;
-      if (!email) {
-        throw new Error("Email address is missing for the Clerk user.");
       }
 
       const newUser: any = {
@@ -59,3 +63,4 @@ export const fetchUsers = async () => {
     return { error: error.message || "An unexpected error occurred." };
   }
 };
+

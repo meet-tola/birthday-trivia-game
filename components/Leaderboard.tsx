@@ -65,7 +65,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ users }) => {
                     )}
                   </div>
                   <span className="text-[2.4rem]">
-                    Total Score:{" "}
+                    Score:{" "}
                     {user.quizResults.reduce(
                       (acc, curr) => acc + curr.quizScore,
                       0

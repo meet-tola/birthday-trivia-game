@@ -46,7 +46,7 @@ const Hero = () => {
               Check Leadboard
             </motion.button>
           </Link>
-          <Link href={"/wishlists"}>
+          {/* <Link href={"/wishlists"}>
             <motion.button
               initial={{ scale: 1 }}
               whileHover={{ scale: 1.1 }}
@@ -56,7 +56,7 @@ const Hero = () => {
             >
               Wishlist
             </motion.button>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </section>
